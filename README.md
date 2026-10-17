@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Creative Full-Stack Engineer
 
-## Getting Started
+A high-performance developer portfolio built with Next.js App Router, TypeScript, Tailwind CSS, and procedural interactive graphics. Engineered with a focus on typography, fluid canvas interactions, strict accessibility standards, and clean modular architecture.
 
-First, run the development server:
+**Live Deployment:** [sameer-portfolio-gamma-five.vercel.app](https://sameer-portfolio-gamma-five.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technical Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Layer | Technologies |
+| :--- | :--- |
+| **Framework & Engine** | Next.js 14+ (App Router), React 18 |
+| **Core Languages** | TypeScript, JavaScript, Python (Procedural Asset Generation) |
+| **Styling & Design** | Tailwind CSS, Lucide Icons, Custom Keyframe Physics |
+| **Interactive Canvas** | HTML5 Canvas / Procedural Matrix Artifacts |
+| **Deployment & CI/CD** | Vercel Serverless Platform, Git Automation Hooks |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Featured Engineering Systems
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Search&Track — AI Resume Parsing & Pipeline Tracker
+* Automated resume extraction matching structured skills against dynamic job descriptions.
+* Interactive Kanban stage tracking with persistent JWT authentication.
+* **Stack:** React, Node.js, Express, MongoDB, Tailwind CSS
+* **Live:** [Search&Track Demo](https://job-search-liard-sigma.vercel.app/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. Wanderlust — Full-Featured Travel Marketplace
+* Multi-tenant accommodation booking platform modeled on Airbnb.
+* Geospatial listing search, dynamic pricing breakdowns, and cloud asset pipeline.
+* **Stack:** Express.js, Node.js, MongoDB, REST APIs, Tailwind CSS
+* **Live:** [Wanderlust Demo](https://sameer-warsi.onrender.com)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. TaskFlow — Real-Time Workspace Engine
+* High-velocity team issue tracker with status transitions (Todo, In Progress, Done).
+* Supabase OAuth 2.0 PKCE authentication flow and persistent workspace sessions.
+* **Stack:** Next.js, TypeScript, Supabase, Tailwind CSS
+* **Live:** [TaskFlow Demo](https://task-management-app-sable-eight.vercel.app)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Architecture & Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+├── public/
+│   ├── generated/       # Procedural SVG artifacts and canvas assets
+│   └── projects/        # Optimized WebP showcase imagery
+├── src/
+│   ├── app/             # Next.js App Router (layout, page metadata, routes)
+│   ├── canvas/          # Procedural interactive canvas engines
+│   ├── components/      # Modular UI components (Navigation, Cards, Showcase)
+│   └── content/         # Centralized typed data schemas (projects.ts)
+├── generate_artifacts.py # Python script for procedural geometric asset generation
+└── next.config.ts       # Performance optimization and image domain configs
