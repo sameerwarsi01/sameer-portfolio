@@ -1,79 +1,122 @@
-import { Project } from "@/content/projects";
-import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
+"use client";
 
-export default function ProjectCard({ project }: { project: Project }) {
-  return (
-    <article className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start border-b border-zinc-800/60 pb-16 group">
-      {/* Visual Preview */}
-      <div className="lg:col-span-6 aspect-video w-full rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden relative group-hover:border-zinc-700 transition-colors">
-        {project.image ? (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full h-full relative overflow-hidden cursor-pointer"
-          >
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-105"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-              <span className="text-xs font-mono text-zinc-300 flex items-center gap-1">
-                View Project <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400" />
-              </span>
-            </div>
-          </a>
-        ) : (
-          <div className="w-full h-full p-6 flex flex-col justify-between">
-            <div className="flex justify-between items-center text-xs font-mono text-zinc-500">
-              <span>{project.index} / {project.title.toLowerCase()}</span>
-              <span className="text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
-            </div>
-            <div className="my-auto text-center">
-              <h4 className="text-2xl font-light text-zinc-200">{project.title}</h4>
-              <p className="text-xs text-zinc-500 font-mono mt-1">{project.tagline}</p>
-            </div>
-            <div className="text-xs text-zinc-500 font-mono flex justify-between">
-              <span>Status: Live</span>
-              <span>Production</span>
-            </div>
+import Image from "next/image";
+import { ProjectItem } from "@/data/projects";
+
+export default function ProjectCard({ project }: { project: ProjectItem }) {
+  const {
+    id,
+    tag,
+    category,
+    title,
+    description,
+    bullets,
+    footerMeta,
+    stack,
+    imageSrc,
+    imageAlt,
+    caption,
+    liveUrl,
+    repoUrl,
+    imageOnLeft,
+  } = project;
+
+  // 1. Framed Image Mockup
+  const FrameMockup = (
+    <div className="lg:col-span-7">
+      <a
+        href={repoUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="group block w-full rounded-sm border border-[#222419] bg-[#0c0d09] p-4 sm:p-6 transition-all duration-300 hover:border-[#c8e98a]/80"
+      >
+        <div className="flex items-center justify-between pb-3.5 border-b border-[#181914] font-mono text-[11px] text-[#63655a]">
+          <span className="group-hover:text-[#e4e4dd] transition-colors">{tag}</span>
+          <span className="text-[#787a70] group-hover:text-[#c8e98a] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
+            ↗
+          </span>
+        </div>
+
+        {/* Aspect ratio fixed styles taaki image container kabhi collapse na ho */}
+        <div className="relative mt-4 w-full h-[240px] sm:h-[340px] md:h-[380px] bg-[#080906] border border-[#1a1b15] overflow-hidden rounded-[2px] flex items-center justify-center">
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            sizes="(max-width: 1024px) 100vw, 850px"
+            unoptimized
+            className="object-contain object-center transition-transform duration-500 group-hover:scale-[1.01]"
+            priority={id === "01"}
+          />
+        </div>
+
+        <div className="pt-4 font-mono text-[11px] text-[#55574e] group-hover:text-[#787a70] transition-colors">
+          {caption}
+        </div>
+      </a>
+    </div>
+  );
+
+  // 2. Editorial Text Content
+  const EditorialText = (
+    <div className="lg:col-span-5 space-y-6">
+      <p className="font-mono text-[11px] text-[#c8e98a]">{category}</p>
+
+      <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-medium tracking-tight text-[#f5f5f0] leading-tight">
+        {title}
+      </h2>
+
+      <div className="space-y-4 text-sm sm:text-base text-[#9ea094] font-normal leading-relaxed">
+        <p>{description}</p>
+        {bullets && bullets.length > 0 && (
+          <div className="space-y-1.5 text-[13px] text-[#6d6f65] leading-relaxed">
+            {bullets.map((point, idx) => (
+              <p key={idx}>{point}</p>
+            ))}
           </div>
         )}
       </div>
 
-      {/* Details */}
-      <div className="lg:col-span-6 space-y-4">
-        <span className="text-xs font-mono text-emerald-400">{project.category}</span>
-        <h3 className="text-2xl font-light text-zinc-100">{project.tagline}</h3>
-        <p className="text-zinc-400 text-sm leading-relaxed">{project.description}</p>
+      <p className="font-mono text-[11px] text-[#55574e]">{footerMeta}</p>
 
-        <ul className="space-y-1.5 text-sm text-zinc-400 border-l border-zinc-800 pl-4">
-          {project.highlights.map((item, idx) => (
-            <li key={idx}>• {item}</li>
-          ))}
-        </ul>
+      <div className="font-mono text-[11px] text-[#787a70] pt-1">{stack}</div>
 
-        <div className="flex flex-wrap gap-2 pt-2">
-          {project.techStack.map((tech) => (
-            <span key={tech} className="text-xs font-mono text-zinc-400 bg-zinc-900 border border-zinc-800 px-2.5 py-1 rounded-full">
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex items-center space-x-6 pt-3 text-sm">
-          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-zinc-200 hover:text-emerald-400">
-            Live <ArrowUpRight className="w-4 h-4 ml-1" />
+      <div className="flex items-center gap-6 pt-3 font-mono text-xs">
+        {liveUrl && (
+          <a
+            href={liveUrl}
+            className="text-[#f5f5f0] hover:text-[#c8e98a] transition-colors flex items-center gap-1.5"
+          >
+            {id === "01" ? "Explore the experience" : "Try the tool"} ↗
           </a>
-          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-zinc-400 hover:text-white">
-            Source <ArrowUpRight className="w-4 h-4 ml-1" />
-          </a>
-        </div>
+        )}
+        <a
+          href={repoUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="text-[#787a70] hover:text-[#f5f5f0] transition-colors flex items-center gap-1.5"
+        >
+          Source code ↗
+        </a>
       </div>
-    </article>
+    </div>
+  );
+
+  return (
+    <div className="w-full border-b border-[#181914] px-6 sm:px-12 lg:px-16 py-16 sm:py-24">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        {imageOnLeft ? (
+          <>
+            {FrameMockup}
+            {EditorialText}
+          </>
+        ) : (
+          <>
+            <div className="lg:col-span-5 order-2 lg:order-1">{EditorialText}</div>
+            <div className="lg:col-span-7 order-1 lg:order-2">{FrameMockup}</div>
+          </>
+        )}
+      </div>
+    </div>
   );
 }

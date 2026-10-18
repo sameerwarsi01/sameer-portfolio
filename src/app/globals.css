@@ -6,9 +6,10 @@
     --font-serif: var(--font-newsreader);
   }
 
+  html,
   body {
-    background-color: #0c0d0e;
-    color: #eceeed;
+    background-color: #0b0c09 !important;
+    color: #e4e4dd !important;
     overflow-x: hidden;
   }
 }
@@ -23,12 +24,12 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0c0d0e;
+  background: #0b0c09;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #23251c;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #36392b;
 }
