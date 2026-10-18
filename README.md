@@ -53,6 +53,7 @@ Designed with an editorial, dark-mode aesthetic (#080906) inspired by high-craft
 
 ## Project Architecture
 
+```plaintext
 ├── public/
 │   └── generated/               # Python-generated vector assets
 │       ├── about-wave.svg
@@ -88,7 +89,7 @@ Designed with an editorial, dark-mode aesthetic (#080906) inspired by high-craft
 │   └── data/
 │       └── projects.ts          # Project metadata, stack, and URLs
 └── package.json
-
+```
 ---
 
 ## Parametric Artwork Generation
